@@ -1,26 +1,27 @@
 import streamlit as st
 from transformers import pipeline
 
-# Title
-st.set_page_config(page_title="LaymanLens", layout="centered")
-st.title("📚 LaymanLens – Complex to Simple Explanation")
-
-# Input Text
-user_input = st.text_area("Enter a technical or complex sentence:")
-
-# Load summarization pipeline (you can switch to your custom model if hosted)
+# ✅ Cache the model so it's only loaded once
 @st.cache_resource
 def load_model():
-    return pipeline("summarization", model="sshleifer/distilbart-cnn-12-6")
+    return pipeline("text-classification", model="Swethaa02/laymanlens-v1")
 
-summarizer = load_model()
+# Load model from cache
+model = load_model()
 
-# Summarize on button click
+# Streamlit app UI
+st.set_page_config(page_title="LaymanLens", layout="centered")
+st.title("🔍 LaymanLens")
+st.subheader("Simplifying Complex Technical Sentences")
+
+# User input
+text = st.text_area("Enter a complex technical sentence:")
+
 if st.button("Simplify"):
-    if user_input.strip() != "":
+    if text.strip():
         with st.spinner("Simplifying..."):
-            summary = summarizer(user_input, max_length=60, min_length=15, do_sample=False)
-            st.subheader("Layman's Explanation:")
-            st.success(summary[0]['summary_text'])
+            output = model(text)[0]["label"]
+        st.success("✅ Simplified Output:")
+        st.write(output)
     else:
-        st.warning("Please enter some text.")
+        st.warning("Please enter a sentence to simplify.")
