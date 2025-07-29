@@ -1,40 +1,30 @@
 import streamlit as st
-from transformers import pipeline
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
 
-# ------------------- App Configuration -------------------
-st.set_page_config(page_title="LaymanLens", page_icon="⏳", layout="centered")
+# Title and description
+st.set_page_config(page_title="LaymanLens", page_icon="⏳")
+st.title("LaymanLens ⏳")
+st.write("### Simplify complex technical text into layman's terms using AI.")
 
-# ------------------- App Header -------------------
-st.markdown("<h1 style='text-align: center;'>LaymanLens ⏳</h1>", unsafe_allow_html=True)
-st.markdown("<h4 style='text-align: center; color: gray;'>Simplify Complex Technical Text Instantly</h4>", unsafe_allow_html=True)
-
-# ------------------- Load Model -------------------
-@st.cache_resource(show_spinner=True)
+# Load model and tokenizer (no sentencepiece!)
+@st.cache_resource
 def load_model():
-    return pipeline("text2text-generation", model="Swethaa02/laymanlens-v1")
+    model_name = "mrm8488/t5-base-finetuned-summarize-news"  # Light model for Streamlit
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+    return pipeline("summarization", model=model, tokenizer=tokenizer)
 
 simplifier = load_model()
 
-# ------------------- Input Box -------------------
-st.markdown("### 📝 Enter Technical Text")
-user_input = st.text_area("Paste your complex text below:", height=200, placeholder="e.g. The quantum entanglement in photonic systems enables secure communication channels...")
+# User input
+user_input = st.text_area("Enter complex technical sentence:")
 
-# ------------------- Simplify Button -------------------
-if st.button("🔍 Simplify"):
-    if not user_input.strip():
-        st.warning("Please enter some text to simplify.")
+# Simplify button
+if st.button("Simplify"):
+    if user_input.strip() == "":
+        st.warning("Please enter some text.")
     else:
-        with st.spinner("⏳ Simplifying... please wait..."):
-            try:
-                output = simplifier(user_input, max_length=150, clean_up_tokenization_spaces=True)[0]['generated_text']
-                st.success("✅ Simplified Text")
-                st.markdown(f"```{output.strip()}```")
-            except Exception as e:
-                st.error(f"🚨 Error: {e}")
-
-# ------------------- Footer -------------------
-st.markdown("---")
-st.markdown(
-    "<p style='text-align: center; font-size: 12px;'>Made with ❤️ by Swethaa02 | Hugging Face Model: <code>Swethaa02/laymanlens-v1</code></p>",
-    unsafe_allow_html=True
-)
+        with st.spinner("Simplifying..."):
+            result = simplifier(user_input[:1024])[0]['summary_text']
+        st.success("Here's the simplified version:")
+        st.write(f"🪄 **{result}**")
