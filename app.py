@@ -1,27 +1,11 @@
 import streamlit as st
 from transformers import pipeline
 
-# ✅ Cache the model so it's only loaded once
-@st.cache_resource
-def load_model():
-    return pipeline("text-classification", model="Swethaa02/laymanlens-v1")
+# ------------------- App Configuration -------------------
+st.set_page_config(page_title="LaymanLens", page_icon="⏳", layout="centered")
 
-# Load model from cache
-model = load_model()
+# ------------------- App Header -------------------
+st.markdown("<h1 style='text-align: center;'>LaymanLens ⏳</h1>", unsafe_allow_html=True)
+st.markdown("<h4 style='text-align: center; color: gray;'>Simplify Complex Technical Text Instantly</h4>", unsafe_allow_html=True)
 
-# Streamlit app UI
-st.set_page_config(page_title="LaymanLens", layout="centered")
-st.title("🔍 LaymanLens")
-st.subheader("Simplifying Complex Technical Sentences")
-
-# User input
-text = st.text_area("Enter a complex technical sentence:")
-
-if st.button("Simplify"):
-    if text.strip():
-        with st.spinner("Simplifying..."):
-            output = model(text)[0]["label"]
-        st.success("✅ Simplified Output:")
-        st.write(output)
-    else:
-        st.warning("Please enter a sentence to simplify.")
+# ------------------- Load Model -----------------
