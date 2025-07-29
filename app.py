@@ -1,34 +1,43 @@
 import streamlit as st
-from transformers import pipeline, AutoTokenizer, AutoModelForSeq2SeqLM
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
-st.set_page_config(
-    page_title="LaymanLens",
-    page_icon="🔍",
-    layout="centered"
-)
+# App title and emoji
+st.set_page_config(page_title="LaymanLens", page_icon="⌛")  # Hourglass emoji used as favicon
 
-st.markdown("<h1 style='text-align: center;'>🔍 LaymanLens</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center;'>Simplify complex text into plain English</p>", unsafe_allow_html=True)
+st.markdown("""
+    <h1 style='text-align: center;'>🔍 LaymanLens</h1>
+    <h4 style='text-align: center;'>✍️ Simplifying complex technical sentences into layman terms</h4>
+    <br>
+""", unsafe_allow_html=True)
 
-@st.cache_resource
+# Load model & tokenizer
+@st.cache_resource(show_spinner="Loading the model...")
 def load_model():
-    model_name = "knkarthick/MEETING_SUMMARY"
-    tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True)
+    model_name = "Swethaa02/laymanlens-v1"
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
-    return pipeline("summarization", model=model, tokenizer=tokenizer)
+    return tokenizer, model
 
-simplifier = load_model()
+tokenizer, model = load_model()
 
-user_input = st.text_area("✍️ Paste your technical or complex text below:")
+# Input
+user_input = st.text_area("Paste any technical sentence below to simplify:", height=150)
 
-if st.button("Simplify"):
-    if user_input.strip() == "":
-        st.warning("Please enter some text to simplify.")
-    else:
-        with st.spinner("Simplifying..."):
-            result = simplifier(user_input, max_length=100, min_length=30, do_sample=False)
-            st.success("Here's the simplified version:")
-            st.write(result[0]['summary_text'])
+# Simplify function
+if user_input:
+    with st.spinner("Simplifying..."):
+        input_ids = tokenizer.encode("simplify: " + user_input, return_tensors="pt")
+        output_ids = model.generate(input_ids, max_length=256, num_beams=4, early_stopping=True)
+        simplified_text = tokenizer.decode(output_ids[0], skip_special_tokens=True)
 
-st.markdown("---")
-st.markdown("<p style='text-align: center; font-size: 0.8em;'>Made with ❤️ by LaymanLens Team</p>", unsafe_allow_html=True)
+        # Output
+        st.markdown("""
+            <h4 style='margin-top: 30px;'>✅ <u>Simplified Output</u>:</h4>
+        """, unsafe_allow_html=True)
+        st.success(simplified_text)
+
+# Footer
+st.markdown("""
+    <br><hr>
+    <center>⌛ <i>LaymanLens by Swethaa02</i> ✍️</center>
+""", unsafe_allow_html=True)
