@@ -3,32 +3,80 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LaymanLens</title>
+  <title>LaymenLens - Simplify Research</title>
   <style>
     body {
-      font-family: sans-serif;
-      text-align: center;
-      background: #f9f9f9;
-      padding: 2rem;
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #fefefe;
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      height: 100vh;
     }
-    h1 {
-      font-size: 3rem;
-      color: #333;
-    }
-    a {
-      display: inline-block;
-      margin-top: 1.5rem;
+
+    header {
+      background-color: #f3f3f3;
+      width: 100%;
       padding: 1rem 2rem;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .icon {
+      font-size: 3rem;
+      margin-bottom: 0.3rem;
+    }
+
+    h1 {
+      margin: 0.3rem 0;
+      font-size: 2rem;
+    }
+
+    p {
+      margin: 0.5rem 0 1.5rem;
+      max-width: 600px;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    a.button {
       background-color: #4CAF50;
       color: white;
-      border-radius: 8px;
+      padding: 12px 24px;
       text-decoration: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    a.button:hover {
+      background-color: #45a049;
+    }
+
+    footer {
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      color: #555;
     }
   </style>
 </head>
 <body>
-  <h1>LaymanLens</h1>
-  <p>Click the button below to visit the Streamlit app!</p>
-  <a href="https://swethaa-02-laymanlens-app-8cpd5w.streamlit.app/" target="_blank">Launch App</a>
+
+  <header>
+    <div class="icon">⏳</div>
+    <h1>LaymenLens</h1>
+    <p>✍️ Simplify complex research papers into easy, layman-friendly English — instantly.</p>
+    <a href="https://huggingface.co/spaces/Swetha02/laymenslens" target="_blank" class="button">
+      Try LaymenLens
+    </a>
+  </header>
+
+  <footer>
+    ❤️ Made with love by Team LaymenLens
+  </footer>
+
 </body>
 </html>
