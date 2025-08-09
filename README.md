@@ -92,7 +92,7 @@ Output: "Gravity on Earth pulls things down at about 9.81 m/s²."
 
 ---
 
-###Testing
+## Testing
 You can test the project locally to ensure it is functioning correctly:
 1.Clone the repository
 git clone https://github.com/Swethaa-02/LaymanLens.git
@@ -106,7 +106,7 @@ Navigate to http://localhost:8501 to access the app interface
 
 ---
 
-###Results
+## Results
 Converts complex technical terms into beginner-friendly sentences.
 
 Works effectively on research papers, legal documents, and technical manuals.
@@ -117,7 +117,7 @@ Maintains accuracy while simplifying content.
 
 ---
 
-###Future Improvements
+## Future Improvements
 Add multi-language support for global usage.
 
 Deploy on free permanent hosting to ensure 24/7 access.
@@ -128,7 +128,7 @@ Improve AI model for even higher accuracy and contextual understanding.
 
 ---
 
-###License
+## License
 This project is licensed under the MIT License – see the LICENSE file for details.
 
 
