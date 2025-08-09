@@ -1,157 +1,92 @@
-📘 LaymanLens - Research Simplified with AI
-LaymanLens is an AI-powered web application that simplifies complex academic or technical text into easy-to-understand layman language using state-of-the-art transformer models. It's designed to help students, researchers, and curious learners grasp complicated content effortlessly.
+# LaymanLens
 
-🔍 Table of Contents
-📘 Project Overview
+LaymanLens is a web application that uses **NLP (Natural Language Processing)** and **Transformers** to simplify complex academic and technical sentences into plain, easy-to-understand language.  
+The app is built with **Python** and **Streamlit**, and uses Hugging Face’s transformer models for text simplification 
 
-💡 Features
+---
 
-📷 Demo Screenshot / Video
+## Table of Contents
+- [Overview](#overview)
+- [Workflow](#workflow)
+- [Features](#features)
+- [Dataset](#dataset)
+- [Model Architecture](#model-architecture)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [Testing](#testing)
+- [Results](#results)
+- [Future Improvements](#future-improvements)
+- [License](#license)
 
-🛠 Tech Stack
+---
 
-🧠 How It Works
+## Overview
+LaymanLens is an AI-powered text simplification tool that converts complex technical text into easy-to-understand language.  
+It uses a pre-trained transformer model hosted on Hugging Face to ensure accurate, context-aware simplifications.  
+This tool is built with **Streamlit** for the UI and can be deployed locally or online.
 
-📦 Installation
+---
 
-🚀 Running the App Locally
+## Workflow
+Follow these steps to configure, run, and maintain the project:
 
-🌍 Deployment Options
+1. **Clone the repository**
+    ```bash
+    git clone https://github.com/Swethaa-02/LaymanLens.git
+    cd LaymanLens
+    ```
 
-📂 Project Structure
+2. **Install dependencies**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-❓ FAQs
+3. **Run the Streamlit app**
+    ```bash
+    streamlit run app.py
+    ```
 
-🤝 Contributions
+4. **Access the application**
+    - Local: `http://localhost:8501`
+    - If using ngrok: use the forwarding link shown in your terminal.
 
-📄 License
+---
 
-📘 Project Overview
-LaymanLens was built with the vision to break the barrier between complex academic knowledge and general understanding. With the help of Natural Language Processing (NLP) and the PEGASUS transformer model, users can paste any research abstract or technical description and instantly get a simpler version.
+## Features
+- Converts complex sentences into simplified plain language.
+- Uses transformer-based NLP models.
+- Web interface via Streamlit.
+- Hugging Face model integration.
+- Supports both local and cloud deployment.
 
+---
 
+## Dataset
+The project uses a pre-trained model from Hugging Face (`Swethaa02/laymanlens-v1`) trained on custom technical text and simplified text pairs.
 
-💡 Features
+---
 
-📷 Demo Screenshot / Video
+## Model Architecture
+- **Tokenizer:** AutoTokenizer from Hugging Face Transformers.
+- **Model:** AutoModelForSeq2SeqLM for sequence-to-sequence simplification.
+- **Framework:** PyTorch backend.
 
-🛠 Tech Stack
+---
 
-🧠 How It Works
-
-📦 Installation
-
-🚀 Running the App Locally
-
-🌍 Deployment Options
-
-📂 Project Structure
-
-❓ FAQs
-
-🤝 Contributions
-
-📄 License
-
-
-📘 Project Overview
-
-💡 Features
-✅ Summarizes and simplifies technical text
-
-✅ Powered by the Hugging Face transformers library
-
-✅ Easy-to-use interface built with Streamlit
-
-✅ Responsive and minimal UI
-
-✅ Hosted via Hugging Face Spaces / ngrok / Replit
-
-🛠 Tech Stack
-Layer	Technology
-Frontend	Streamlit
-Backend	Python
-NLP Model	PEGASUS (from Hugging Face)
-Hosting	Hugging Face Spaces / Replit / ngrok
-Source Code	GitHub
-
-🧠 How It Works
-User inputs a technical sentence or academic abstract.
-
-The AutoTokenizer and AutoModelForSeq2SeqLM from Hugging Face load the PEGASUS model.
-
-The model generates a simplified version of the input.
-
-Output is displayed instantly in a user-friendly interface.
-
-📦 Installation
-Make sure Python 3.10+ is installed.
-
-Step 1: Clone the repo
-git clone https://github.com/Swethaa-02/LaymanLens.git
-cd LaymanLens
-Step 2: Install dependencies
+## Getting Started
+Make sure you have **Python 3.8+** installed.  
+Install all requirements using:
+```bash
 pip install -r requirements.txt
 
-🚀 Running the App Locally
-streamlit run app.py
-Then open http://localhost:8501 in your browser.
+---
 
-🌍 Deployment Options
-📌 Option 1: Hugging Face Spaces
-Fork this repo and go to https://huggingface.co/spaces
+## Usage
+1. Enter complex text in the input box.  
+2. Click **"Simplify"**.  
+3. View simplified output instantly.
 
-Click New Space
-
-Choose Streamlit, link your GitHub, and select this repo
-
-Done!
-
-📌 Option 2: Replit
-Create a new Replit project (Python)
-
-Upload all files (app.py, requirements.txt)
-
-Add a replit.nix if needed for Streamlit
-
-Set the run command to:
-streamlit run app.py --server.port=3000 --server.address=0.0.0.0
-
-📂 Project Structure
-LaymanLens/
-│
-├── app.py                 # Streamlit app logic
-├── requirements.txt       # All Python dependencies
-├── index.html             # (optional) Homepage template
-└── README.md              # Project documentation
-
-❓ FAQs
-Q1. Why does my app not load on Hugging Face?
-Make sure your app.py is in root, and requirements.txt has transformers, torch, and streamlit.
-
-Q2. Which model are you using?
-google/pegasus-xsum from Hugging Face.
-
-Q3. Does it work offline?
-No, the model loads from Hugging Face and requires internet.
-
-
-
-🤝 Contributions
-Contributions are welcome!
-
-Fork the repo
-
-Create a branch
-
-Push your changes
-
-Submit a PR
-
-
-
-📄 License
-MIT License
-Feel free to use, modify, and share.
-
-
+Example:
+```bash
+Input: "The acceleration due to gravity on Earth is approximately 9.81 meters per second squared."
+Output: "Gravity on Earth pulls things down at about 9.81 m/s²."
