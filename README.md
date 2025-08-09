@@ -107,24 +107,24 @@ Navigate to http://localhost:8501 to access the app interface
 ---
 
 ## Results
--Converts complex technical terms into beginner-friendly sentences.
+- Converts complex technical terms into beginner-friendly sentences.
 
--Works effectively on research papers, legal documents, and technical manuals.
+- Works effectively on research papers, legal documents, and technical manuals.
 
--Reduces reading and comprehension time by up to 60% (based on test feedback).
+- Reduces reading and comprehension time by up to 60% (based on test feedback).
 
--Maintains accuracy while simplifying content.
+- Maintains accuracy while simplifying content.
 
 ---
 
 ## Future Improvements
--Add multi-language support for global usage.
+- Add multi-language support for global usage.
 
--Deploy on free permanent hosting to ensure 24/7 access.
+- Deploy on free permanent hosting to ensure 24/7 access.
 
--Integrate a browser extension for quick text simplification on any website.
+- Integrate a browser extension for quick text simplification on any website.
 
--Improve AI model for even higher accuracy and contextual understanding.
+- Improve AI model for even higher accuracy and contextual understanding.
 
 ---
 
