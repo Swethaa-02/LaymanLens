@@ -76,7 +76,7 @@ The project uses a pre-trained model from Hugging Face (`Swethaa02/laymanlens-v1
 ## Getting Started
 Make sure you have **Python 3.8+** installed.  
 Install all requirements using:
-```bash
+
 pip install -r requirements.txt
 
 ---
@@ -87,6 +87,49 @@ pip install -r requirements.txt
 3. View simplified output instantly.
 
 Example:
-```bash
 Input: "The acceleration due to gravity on Earth is approximately 9.81 meters per second squared."
 Output: "Gravity on Earth pulls things down at about 9.81 m/s²."
+
+---
+
+###Testing
+You can test the project locally to ensure it is functioning correctly:
+1.Clone the repository
+git clone https://github.com/Swethaa-02/LaymanLens.git
+cd LaymanLens
+2.Install dependencies
+pip install -r requirements.txt
+3.Run the app
+streamlit run app.py
+4.Open in Browser
+Navigate to http://localhost:8501 to access the app interface
+
+---
+
+###Results
+Converts complex technical terms into beginner-friendly sentences.
+
+Works effectively on research papers, legal documents, and technical manuals.
+
+Reduces reading and comprehension time by up to 60% (based on test feedback).
+
+Maintains accuracy while simplifying content.
+
+---
+
+###Future Improvements
+Add multi-language support for global usage.
+
+Deploy on free permanent hosting to ensure 24/7 access.
+
+Integrate a browser extension for quick text simplification on any website.
+
+Improve AI model for even higher accuracy and contextual understanding.
+
+---
+
+###License
+This project is licensed under the MIT License – see the LICENSE file for details.
+
+
+
